@@ -1,0 +1,88 @@
+<!doctype html>  
+<html lang="en">  
+    <head>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <style>
+        * {
+    box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        background-color: black;
+    }
+
+    body, html{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: 0;
+        padding: 0;
+        overflow-y: hidden;
+    }
+
+    h1, h3{
+        font-size: 35px;
+        margin-left:50px;
+        padding: 2px;
+        color:white;
+    }
+
+    p {
+        color:white;
+        font-size: 25px;
+        margin-left: 50px;
+    }
+
+    #title{
+        height: 20%;
+        width: 100%;
+    }
+
+    #future{
+        height: 80%;
+        width: 100%;
+    }
+
+    #future{
+        overflow: scroll;
+        overflow-x: hidden; 
+    }
+
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <div id="title">
+                <h1>Dense Emptiness Feedback</h1>
+                <h3>send text messages to: 704-323-5481</h3>
+                <hr>
+        </div>
+
+        <div id="future"></div>
+    </body>
+    <script>
+
+        $("#future").height(function(){
+            return $("window").height() - $("#title").height();
+        })
+        
+         var socket = io.connect('https://denseempty.herokuapp.com/');
+        socket.on('connect', function(data) {
+            socket.emit('join', 'new client joined');
+        });
+
+        socket.on('messages', function(data) {
+                // alert(data);
+                console.log(data);
+                var d = "<p>" + data + "</p>"
+                $("#future").append(d);
+                $("#future").append("<hr>")
+                $("#future").animate({ scrollTop: $("#future")[0].scrollHeight }, "slow");
+        });
+    </script>
+</html>  
