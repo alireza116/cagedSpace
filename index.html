@@ -86,8 +86,8 @@
             return $("window").height() - $("#title").height();
         })
         
-        // var socket = io.connect('https://cagedspace.herokuapp.com/');
-        var socket = io.connect('http://127.0.0.1:3005')
+        var socket = io.connect('https://cagedspace.herokuapp.com/');
+        // var socket = io.connect('http://127.0.0.1:3005')
         socket.on('connect', function(data) {
             socket.emit('join', 'new client joined');
         });
