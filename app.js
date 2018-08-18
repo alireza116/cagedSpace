@@ -66,6 +66,7 @@ io.on('connection', function(client) {
     c = client;
     client.on('join', function(data) {
         countUsers ++
+        console.log(countUsers + " users connected");
         // console.log(data);
         // messages.forEach(function(m){
         //     client.emit("messages",m);
@@ -94,6 +95,7 @@ io.on('connection', function(client) {
 
     client.on("leave",function(data){
         countUsers--;
+        console.log(countUsers + " users connected");
         if (countUsers == 0) {
             stream.destroy();
         }
