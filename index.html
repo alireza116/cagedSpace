@@ -13,7 +13,7 @@
 
     body {
         font-family: sans-serif;
-        /* background-color: black; */
+        background-color: black;
     }
 
     body, html{
@@ -30,13 +30,15 @@
         margin-left:50px;
         padding: 2px;
         text-align: center;
-        /* color:white; */
+        color: orange;
     }
 
     p {
         /* color:white; */
-        font-size: 25px;
+        font-size: 75px;
         margin-left: 50px;
+        color:orange;
+        font-weight: bold;
     }
 
     img {
@@ -52,9 +54,11 @@
     }
 
     #future{
-        height: 80%;
-        width: 60%;
+        height: 100%;
+        width: 80%;
         margin: 0 auto;
+        margin-bottom: 25px;
+        margin-top: 25px;
     }
 
     #future{
@@ -72,11 +76,11 @@
     <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
-                <div id="title">
+                <!-- <div id="title">
                         <h2>User Agreement</h2>
                         <h3>Tweets around us!</h3>
                         <hr>
-                </div>
+                </div> -->
                 <div id="future"></div>
         
     </body>
@@ -86,8 +90,8 @@
             return $("window").height() - $("#title").height();
         })
         
-        var socket = io.connect('https://cagedspace.herokuapp.com/');
-        // var socket = io.connect('http://127.0.0.1:3005')
+        // var socket = io.connect('https://cagedspace.herokuapp.com/');
+        var socket = io.connect('http://127.0.0.1:3005');
         socket.on('connect', function(data) {
             socket.emit('join', 'new client joined');
         });
@@ -103,11 +107,12 @@
                     img = '<img src="' + data.image + '" >' 
                     $("#future").append(img);
                 }
-                $("#future").append("<hr>")
+                // $("#future").append("<hr>");
                 if ($("#future p").length > 30){
                     $("#future p")[0].remove();
                     $("#future hr")[0].remove();
-                }
+                    $("#future img").remove();
+                    }
                 $("#future").animate({ scrollTop: $("#future")[0].scrollHeight }, "slow");
 
         });
