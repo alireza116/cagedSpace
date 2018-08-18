@@ -86,7 +86,7 @@ io.on('connection', function(client) {
             message["text"] = event.text
             // console.log(message);
             io.emit("messages",message);
-                console.log(event && event.text);
+                // console.log(event && event.text);
             });
     
             stream.on('error', function(error) {
