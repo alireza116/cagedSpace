@@ -6,10 +6,10 @@ var io = require('socket.io')(server);
 var Twitter = require("twitter");
 
 var tweetClient = new Twitter({
-    consumer_key: 'X5fiWWOh9RCwpIF3C2nVBJNe1',
-    consumer_secret: 'Yc3bOKXYu6KfMhLH65MFf5yps2Glb2CegyRABDxGU3oYqXya5S',
-    access_token_key: '252152228-PxAuvKs0Bmp8uqWnx8MCXo50JOSCNzCDbmj6qyWr',
-    access_token_secret: 'UPG9kHaNt3q2pg6H6BlQdcCoj9iQpGM9ciewxDoFu7hsh'
+    consumer_key: '',
+    consumer_secret: '',
+    access_token_key: '',
+    access_token_secret: ''
   });
 
 port = process.env.PORT || 3005;
